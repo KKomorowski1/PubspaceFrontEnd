@@ -1,0 +1,73 @@
+<div class="container">
+  <!-- Note menu -->
+  <div class="row" style="margin-top:12px;">
+    <div class="col-md-8">
+      <input type="text"
+             class="form-control"
+             style="width: 100%;"
+             placeholder="Search Pubs...">
+    </div>
+    <div class="col-md-4">
+      <button type="button"
+              (click)="createPub()"
+              class="btn btn-info pull-right"
+              style="margin-left:12px;"><i class="fa fa-plus"> New Pub</i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Note content -->
+  <div class="row" style="margin-top: 28px;">
+    <!-- Notebooks Menu -->
+    <div class="col-md-3">
+      <br>
+      <div class="list-group list-group-flush">
+        <a class="list-group-item list-group-item-action" (click)="getLast10()">
+          <i class="fa fa-bell"></i>&nbsp;Latest
+        </a>L
+        <!-- Pubs List -->
+        <a *ngFor="let pub of pubs" (click)="selectPub(pub)" class="list-group-item list-group-item-action">
+          <div class="input-label" style="width: 80%; height: 10px">{{pub.name}}</div>
+          <a (click)="deletePub(pub)" class="pull-right text-danger">
+            <i class="fa fa-trash-o"></i>
+          </a>
+        </a>
+      </div>
+    </div>
+
+    <!-- Notes Panel -->
+    <div class="col-md-9">
+      <div class="row">
+        <div class="col-md-12">
+          <!-- Message if there are no updates -->
+          <h3 *ngIf="selectedPub != null">{{selectedPub.name}}</h3>
+          <h4 *ngIf="selectedPub != null">{{selectedPub.address}}</h4>
+          <label id="example-radio-group-label" *ngIf="selectedPub != null">Pick amount of space</label>
+          <mat-radio-group
+            aria-labelledby="example-radio-group-label"
+            class="example-radio-group"
+            *ngIf="selectedPub != null"
+            [(ngModel)]="seat">
+            <mat-radio-button *ngFor="let optionsOfSpace of space"
+                              (change)="createUpdate(selectedPub.id, optionsOfSpace)" ngDefaultControl
+                              value="{{optionsOfSpace}}" class="example-radio-button" name="{{optionsOfSpace}}">
+              {{optionsOfSpace}}
+            </mat-radio-button>
+          </mat-radio-group>
+          <h3 *ngIf="selectedPub == null">Latest updates</h3>
+          <p *ngIf="this.seats.length === 0"> there is no updates to display</p>
+        </div>
+      </div>
+      <div>
+        <!-- Last 10 List -->
+        <div *ngFor="let seat of seats">
+          <div class="card-body" style="padding: 8px; margin-top: 8px;">
+            <p style="border: white; font-weight: normal">{{seat.space}} {{seat.dateTime | date:'medium'}} </p>
+            <!-- text -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
