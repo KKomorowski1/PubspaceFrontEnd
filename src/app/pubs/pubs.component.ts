@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {Pub} from "./model/pub";
 import {ApiService} from "../shared/api.service";
 import {Seat} from "./model/seat";
+import {AuthService} from 'angular5-social-login';
+import {HttpHeaders} from "@angular/common/http";
 
 @Component({
   selector: 'app-pubs',
@@ -15,7 +17,9 @@ export class PubsComponent implements OnInit {
   space: string[] = ["Full", "Full/Empty", "Empty"];
   seat: Seat;
 
-  constructor(private apiService: ApiService) {
+
+
+  constructor(private apiService: ApiService, private socialAuthService: AuthService) {
   }
 
   ngOnInit() {
@@ -125,4 +129,5 @@ export class PubsComponent implements OnInit {
       }
     );
   }
+
 }

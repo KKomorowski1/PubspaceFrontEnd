@@ -13,6 +13,13 @@ import {HttpClientModule} from "@angular/common/http";
 import {MatRadioModule} from "@angular/material";
 import {registerLocaleData} from '@angular/common';
 import localePl from '@angular/common/locales/pl';
+import {provideConfig} from 'socialloginConfig';
+
+import {
+  SocialLoginModule,
+  AuthServiceConfig,
+} from 'angular5-social-login';
+import {MatCardModule} from "@angular/material/card";
 
 registerLocaleData(localePl);
 
@@ -51,8 +58,19 @@ const appRoutes: Routes = [
     FormsModule,
     HttpClientModule,
     MatRadioModule,
+    SocialLoginModule,
+    MatCardModule
   ],
-  providers: [{provide: LOCALE_ID, useValue: 'pl'}],
+  providers: [
+    {
+      provide: LOCALE_ID,
+      useValue: 'pl'
+    },
+    {
+      provide: AuthServiceConfig,
+      useFactory: provideConfig
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -17,4 +17,15 @@
       </li>
     </ul>
   </div>
+  <div class="example-container mat-elevation-z8">
+    <mat-card class="example-card">
+      <mat-card-header>
+        <mat-card-title><span *ngIf="loggedIn===true">{{user.name}}</span></mat-card-title>
+        <mat-card-subtitle>
+          <button type="button" (click)="signInWithGoogle()" *ngIf="loggedIn===false" mat-flat-button color="primary">Sign In With Google</button>
+          <button type="button" (click)="signOut()" *ngIf="loggedIn===true" mat-flat-button color="primary">Sign Out From Google</button>
+        </mat-card-subtitle>
+      </mat-card-header>
+    </mat-card>
+  </div>
 </nav>

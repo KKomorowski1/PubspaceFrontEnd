@@ -24,7 +24,7 @@
       <div class="list-group list-group-flush">
         <a class="list-group-item list-group-item-action" (click)="getLast10()">
           <i class="fa fa-bell"></i>&nbsp;Latest
-        </a>L
+        </a>
         <!-- Pubs List -->
         <a *ngFor="let pub of pubs" (click)="selectPub(pub)" class="list-group-item list-group-item-action">
           <div class="input-label" style="width: 80%; height: 10px">{{pub.name}}</div>
@@ -43,10 +43,10 @@
           <h3 *ngIf="selectedPub != null">{{selectedPub.name}}</h3>
           <h4 *ngIf="selectedPub != null">{{selectedPub.address}}</h4>
           <label id="example-radio-group-label" *ngIf="selectedPub != null">Pick amount of space</label>
+          <div *ngIf="selectedPub != null">
           <mat-radio-group
             aria-labelledby="example-radio-group-label"
             class="example-radio-group"
-            *ngIf="selectedPub != null"
             [(ngModel)]="seat">
             <mat-radio-button *ngFor="let optionsOfSpace of space"
                               (change)="createUpdate(selectedPub.id, optionsOfSpace)" ngDefaultControl
@@ -54,6 +54,7 @@
               {{optionsOfSpace}}
             </mat-radio-button>
           </mat-radio-group>
+          </div>
           <h3 *ngIf="selectedPub == null">Latest updates</h3>
           <p *ngIf="this.seats.length === 0"> there is no updates to display</p>
         </div>
