@@ -19,13 +19,7 @@ export class ApiService {
   private LATEST_5_URL = `${this.BASE_URL}\\pubs\\latest\\`;
   private SAVE_UPDATE = `${this.BASE_URL}\\pubs\\addUpdate\\`;
 
-  constructor(private http: HttpClient) {
-  }
-
-  createAuthorizationHeader(headers: Headers) {
-    headers.append('Authorization', 'Bearer ' +
-      localStorage.getItem('token'));
-  }
+  constructor(private http: HttpClient) {}
 
   getAllPubs(): Observable<Pub[]> {
     return this.http.get<Pub[]>(this.ALL_PUBS_URL);
